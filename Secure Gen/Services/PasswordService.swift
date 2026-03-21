@@ -37,7 +37,7 @@ final class PasswordService {
 
     // Calcula o tempo (double) de brute force com base em uma entropia
     // Default: combinationsPerSecond: 1 bilhao de tentativas por segundo
-    static func estimateBruteForce(_ entropy: Double, combinationsPerSecond: Double = 1e12)
+    static func estimateBruteForce(_ entropy: Double, combinationsPerSecond: Double = 1e11)
         -> Double
     {
         let totalCombinations: Double = pow(2, entropy)
