@@ -40,8 +40,8 @@ final class PasswordService {
     static func estimateBruteForce(_ entropy: Double, combinationsPerSecond: Double = 1e11)
         -> Double
     {
-        let totalCombinations: Double = pow(2, entropy)
-        return totalCombinations / combinationsPerSecond
+        let totalCombinations: Double = pow(2, (entropy - 1))
+        return (totalCombinations / combinationsPerSecond)
     }
 
     // Gera a senha com base no charset e randomBytes
@@ -59,6 +59,9 @@ final class PasswordService {
         for i: Int in 0..<length {
             result.append(charset[Int(randomBytes[i])])
         }
+
+        print(result)
+
         return result
     }
 }

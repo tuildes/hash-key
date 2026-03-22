@@ -1,5 +1,4 @@
 import Combine
-import CryptoKit
 import Foundation
 
 final class SecureViewModel: ObservableObject {
@@ -7,15 +6,36 @@ final class SecureViewModel: ObservableObject {
     // MARK: - Properties
     @Published public var password: String = ""
 
-    @Published public var length: Float = 32.0
-    @Published public var includeNumbers: Bool = true
-    @Published public var includeSymbols: Bool = true
-    @Published public var includeUppercase: Bool = true
-    @Published public var includeLowercase: Bool = true
+    @Published public var length: Float = 24.0 {
+        didSet {
+            generatePassword()
+        }
+    }
+    @Published public var includeNumbers: Bool = true {
+        didSet {
+            generatePassword()
+        }
+    }
+    @Published public var includeSymbols: Bool = false {
+        didSet {
+            generatePassword()
+        }
+    }
+    @Published public var includeUppercase: Bool = true {
+        didSet {
+            generatePassword()
+        }
+    }
+    @Published public var includeLowercase: Bool = true {
+        didSet {
+            generatePassword()
+        }
+    }
 
     @Published public var error: SecureError? = nil
     @Published public var isLoading: Bool = false
 
+    @Published public var passwordStrength: PasswordStrength = .veryWeak
     @Published public var isLeaked: Bool = false
     @Published public var entropy: Double = 0.0
     @Published public var bruteForceTime: Double = 0.0
@@ -26,8 +46,6 @@ final class SecureViewModel: ObservableObject {
         HashName(name: "SHA-384", isObsolete: false, value: "", totalBits: 384),
         HashName(name: "SHA-512", isObsolete: false, value: "", totalBits: 512),
     ]
-
-    @Published public var passwordStrength: PasswordStrength = .veryWeak
 
     private var charset: [Character] {
         var c: [Character] = [Character]()
@@ -57,8 +75,7 @@ final class SecureViewModel: ObservableObject {
         if includeSymbols {
             c.append(contentsOf: [
                 "!", "@", "#", "$", "%", "^", "&", "*", "(", ")",
-                "-", "_", "=", "+", "[", "]", "{", "}", "|",
-                ";", ":", "\"", ".", "/", "?", "~", " ", ",",
+                "-", "_", "=", "+", ".", "?", "~", ",",
             ])
         }
 
@@ -66,9 +83,13 @@ final class SecureViewModel: ObservableObject {
     }
 
     // MARK: - Initializer
-    init() {}
+    init() {
+        generatePassword()
+    }
 
     // MARK: - User actions
+    public func copyPassword() {}
+
     public func generatePassword() {
         guard
             self.includeNumbers || self.includeLowercase || self.includeUppercase

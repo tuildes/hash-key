@@ -1,9 +1,30 @@
-enum PasswordStrength {
-    case veryWeak
-    case weak
-    case good
-    case strong
-    case veryStrong
+import SwiftUI
+enum PasswordStrength: Double {
+    case veryWeak = 0.1
+    case weak = 0.25
+    case good = 0.5
+    case strong = 0.75
+    case veryStrong = 0.95
+
+    var title: String {
+        switch self {
+            case .veryWeak: return "Muito fraco"
+            case .weak: return "Fraco"
+            case .good: return "Bom"
+            case .strong: return "Forte"
+            case .veryStrong: return "Muito forte"
+        }
+    }
+
+    var color: SwiftUI.Color {
+        switch self {
+            case .veryWeak: return .appError
+            case .weak: return .appError
+            case .good: return .appWarning
+            case .strong: return .appSuccess
+            case .veryStrong: return .appSuccess
+        }
+    }
 
     mutating func updateStrength(_ bitsEntropy: Double) {
         // guard bitsEntropy >= 0 else {

@@ -1,0 +1,30 @@
+import SwiftUI
+
+struct ResetButton: View {
+    @State private var isClicked: Bool = false
+    var action: () -> Void
+
+    var body: some View {
+        if #available(iOS 26.0, *) {
+            Button {
+                action()
+                withAnimation {
+                    isClicked = true
+                } completion: {
+                    isClicked = false
+                }
+            } label: {
+                Image(systemName: "arrow.circlepath")
+                    .padding(8)
+                    .foregroundColor(.appBackground)
+                    .background(.tint)
+                    .clipShape(Circle())
+            }
+            .symbolEffect(
+                .drawOff.wholeSymbol,
+                options: .nonRepeating,
+                isActive: isClicked
+            )
+        }
+    }
+}
