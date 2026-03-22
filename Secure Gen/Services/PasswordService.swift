@@ -60,8 +60,6 @@ final class PasswordService {
             result.append(charset[Int(randomBytes[i])])
         }
 
-        print(result)
-
         return result
     }
 }

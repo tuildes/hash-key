@@ -25,6 +25,7 @@ struct PasswordText: UIViewRepresentable {
         label.numberOfLines = 3
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         label.setContentHuggingPriority(.defaultLow, for: .vertical)
+        label.isUserInteractionEnabled = true
 
         return label
     }

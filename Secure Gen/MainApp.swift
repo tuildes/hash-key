@@ -1,10 +1,3 @@
-//
-//  Secure_GenApp.swift
-//  Secure Gen
-//
-//  Created by Gustavo Benitez Frehse on 18/03/26.
-//
-
 import SwiftUI
 
 @main

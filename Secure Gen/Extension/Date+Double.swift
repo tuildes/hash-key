@@ -2,8 +2,6 @@ import Foundation
 
 extension Double {
     var readableCrackTime: String {
-        print(String(format: "%.0fs", self))
-
         switch self {
             case ..<1:
                 return "Instantâneo"

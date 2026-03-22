@@ -1,5 +1,7 @@
 import Combine
 import Foundation
+import UIKit.UIPasteboard
+import CryptoKit
 
 final class SecureViewModel: ObservableObject {
 
@@ -40,12 +42,14 @@ final class SecureViewModel: ObservableObject {
     @Published public var entropy: Double = 0.0
     @Published public var bruteForceTime: Double = 0.0
     @Published private(set) var hashes: [HashName] = [
-        HashName(name: "MD5", isObsolete: true, value: "", totalBits: 128),
+        HashName(name: "MD5", isObsolete: true, value: "F1FF11FF11FF1F1F1", totalBits: 128),
         HashName(name: "SHA-1", isObsolete: true, value: "", totalBits: 160),
         HashName(name: "SHA-256", isObsolete: false, value: "", totalBits: 256),
         HashName(name: "SHA-384", isObsolete: false, value: "", totalBits: 384),
         HashName(name: "SHA-512", isObsolete: false, value: "", totalBits: 512),
     ]
+
+    private var debounceWorkItem: DispatchWorkItem?
 
     private var charset: [Character] {
         var c: [Character] = [Character]()
@@ -88,7 +92,9 @@ final class SecureViewModel: ObservableObject {
     }
 
     // MARK: - User actions
-    public func copyPassword() {}
+    public func copyPassword() {
+        UIPasteboard.general.string = self.password
+    }
 
     public func generatePassword() {
         guard
@@ -99,11 +105,10 @@ final class SecureViewModel: ObservableObject {
             return
         }
 
+        debounceWorkItem?.cancel()
+
         isLoading = true
         error = nil
-        defer {
-            isLoading = false
-        }
 
         let length = Int(length)
 
@@ -114,18 +119,33 @@ final class SecureViewModel: ObservableObject {
         self.entropy = PasswordService.calculateEntropy(length, totalCharacters: self.charset.count)
         self.bruteForceTime = PasswordService.estimateBruteForce(entropy)
         self.password = PasswordService.generatePassword(
-            length, charset: self.charset,
+            length,
+            charset: self.charset,
             randomBytes: randomBytes
         )
         self.passwordStrength.updateStrength(entropy)
 
-        computeHashs()
-        Task {
-            await checkLeak()
+        let workItem = DispatchWorkItem { [weak self] in
+            Task {
+                self?.computeHashs()
+                await self?.checkLeak()
+                self?.isLoading = false
+            }
         }
+
+        debounceWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: workItem)
     }
 
-    // TODO: Check Leak
     private func checkLeak() async {}
-    private func computeHashs() {}
+
+    private func computeHashs() {
+        let data = Data(self.password.utf8)
+
+        self.hashes[0].value = Insecure.MD5.hash(data: data).hexString
+        self.hashes[1].value = Insecure.SHA1.hash(data: data).hexString
+        self.hashes[2].value = SHA256.hash(data: data).hexString
+        self.hashes[3].value = SHA384.hash(data: data).hexString
+        self.hashes[4].value = SHA512.hash(data: data).hexString
+    }
 }

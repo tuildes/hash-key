@@ -23,10 +23,13 @@ struct ContentView: View {
                 PasswordText(text: viewModel.password)
                     .frame(height: 120, alignment: .top)
                     .frame(maxWidth: .infinity)
+                    .onTapGesture {
+                        viewModel.copyPassword()
+                    }
             }
 
             // MARK: - Password configuration
-            VStack(spacing: 32) {
+            VStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(
                         "Comprimento da senha (\(String(format: "%0.f", viewModel.length)) caracteres)"
@@ -35,8 +38,7 @@ struct ContentView: View {
                     .foregroundColor(.appTextAlt)
 
                     Slider(value: $viewModel.length, in: 4...32, step: 1) {
-                        Text("Hello")
-                            .font(.caption)
+                        Text("Length")
                     }
                 }
 
@@ -70,57 +72,82 @@ struct ContentView: View {
             }
 
             // MARK: - Password Analyzer
-            VStack(spacing: 16) {
-                HStack {
-                    Text("Força da senha")
-                        .font(.caption)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 32) {
+                    VStack(spacing: 16) {
+                        HStack {
+                            Text("Força da senha")
+                                .font(.caption)
 
-                    Spacer()
+                            Spacer()
 
-                    Text(viewModel.passwordStrength.title.uppercased())
-                        .font(.body)
-                        .bold()
-                }
+                            Text(viewModel.passwordStrength.title.uppercased())
+                                .font(.body)
+                                .bold()
+                        }
 
-                ProgressView(value: viewModel.passwordStrength.rawValue)
-                    .progressViewStyle(.linear)
-                    .tint(.appBackground)
+                        ProgressView(value: viewModel.passwordStrength.rawValue)
+                            .progressViewStyle(.linear)
+                            .tint(.appBackground)
 
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Entropia")
-                            .font(.caption)
-                            .foregroundColor(.appBackground)
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Entropia")
+                                    .font(.caption)
+                                    .foregroundColor(.appBackground)
 
-                        Text(String(format: "%.1f bits", viewModel.entropy))
+                                Text(String(format: "%.1f bits", viewModel.entropy))
+                            }
+                            .frame(maxWidth: .infinity)
+
+                            VStack(alignment: .leading) {
+                                Text("Brute-force")
+                                    .font(.caption)
+                                    .foregroundColor(.appBackground)
+
+                                Text(viewModel.bruteForceTime.readableCrackTime)
+                            }
+                            .frame(maxWidth: .infinity)
+
+                            VStack(alignment: .leading) {
+                                Text("Vazamentos")
+                                    .font(.caption)
+                                    .foregroundColor(.appBackground)
+
+                                Text(viewModel.isLeaked ? "VAZADO" : "Nenhum")
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
                     }
-                    .frame(maxWidth: .infinity)
+                    .padding(16)
+                    .foregroundColor(.appBackground)
+                    .background(.tint)
+                    .cornerRadius(4)
 
-                    VStack(alignment: .leading) {
-                        Text("Brute-force")
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Hashes Criptográficos")
                             .font(.caption)
-                            .foregroundColor(.appBackground)
+                            .foregroundColor(.appTextAlt)
 
-                        Text(viewModel.bruteForceTime.readableCrackTime)
+                        ForEach(viewModel.hashes, id: \.id) { hash in
+                            VStack(alignment: .leading, spacing: 4) {
+                                HStack {
+                                    Text(hash.name)
+                                        .bold()
+
+                                    Spacer()
+
+                                    Text("\(hash.totalBits) bits")
+                                        .font(.caption)
+                                }
+
+                                HashText(text: hash.value)
+                            }
+                        }
                     }
-                    .frame(maxWidth: .infinity)
-
-                    VStack(alignment: .leading) {
-                        Text("Vazamentos")
-                            .font(.caption)
-                            .foregroundColor(.appBackground)
-
-                        Text(viewModel.isLeaked ? "VAZADO" : "Nenhum")
-                    }
-                    .frame(maxWidth: .infinity)
                 }
             }
-            .padding(16)
-            .foregroundColor(.appBackground)
-            .background(.tint)
-            .cornerRadius(4)
-
-            Spacer()
+            .scrollIndicators(.hidden)
         }
         .padding(32)
         .background(.appBackground)
