@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		883BB6152F70BDB7006E5D79 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 883BB6142F70BDB7006E5D79 /* Localizable.xcstrings */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		883BB6142F70BDB7006E5D79 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		886DDA162F6B65A900297FA8 /* Secure Gen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Secure Gen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -32,6 +37,7 @@
 		886DDA0D2F6B65A900297FA8 = {
 			isa = PBXGroup;
 			children = (
+				883BB6142F70BDB7006E5D79 /* Localizable.xcstrings */,
 				886DDA182F6B65A900297FA8 /* Secure Gen */,
 				886DDA172F6B65A900297FA8 /* Products */,
 			);
@@ -86,11 +92,12 @@
 				};
 			};
 			buildConfigurationList = 886DDA112F6B65A900297FA8 /* Build configuration list for PBXProject "Secure Gen" */;
-			developmentRegion = en;
+			developmentRegion = "pt-BR";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 886DDA0D2F6B65A900297FA8;
 			minimizedProjectReferenceProxies = 1;
@@ -109,6 +116,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				883BB6152F70BDB7006E5D79 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +191,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -238,6 +247,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};

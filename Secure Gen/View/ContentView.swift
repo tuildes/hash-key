@@ -9,7 +9,7 @@ struct ContentView: View {
             // MARK: - Password
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .bottom, spacing: 16) {
-                    Text("Senha gerada")
+                    Text(.passwordGeneratedTitle)
                         .font(.caption)
                         .foregroundColor(.appTextAlt)
 
@@ -18,7 +18,7 @@ struct ContentView: View {
                     Button {
                         viewModel.copyPassword()
                     } label: {
-                        Text("Copiar")
+                        Text(.passwordActionCopy)
                     }
 
                     ResetButton {
@@ -27,7 +27,7 @@ struct ContentView: View {
                 }
 
                 PasswordText(text: viewModel.password)
-                    .frame(height: 120, alignment: .top)
+                    .frame(height: 96, alignment: .top)
                     .frame(maxWidth: .infinity)
                     .onTapGesture {
                         viewModel.copyPassword()
@@ -37,11 +37,9 @@ struct ContentView: View {
             // MARK: - Password configuration
             VStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(
-                        "Comprimento da senha (\(String(format: "%0.f", viewModel.length)) caracteres)"
-                    )
-                    .font(.caption)
-                    .foregroundColor(.appTextAlt)
+                    Text("password_length_label \(Int(viewModel.length)) characters_suffix")
+                        .font(.caption)
+                        .foregroundColor(.appTextAlt)
 
                     Slider(value: $viewModel.length, in: 4...48, step: 2) {
                         Text("Length")
