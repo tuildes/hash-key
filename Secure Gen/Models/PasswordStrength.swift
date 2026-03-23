@@ -6,13 +6,13 @@ enum PasswordStrength: Double {
     case strong = 0.75
     case veryStrong = 0.95
 
-    var title: String {
+    var title: LocalizedStringResource {
         switch self {
-            case .veryWeak: return "Muito fraco"
-            case .weak: return "Fraco"
-            case .good: return "Bom"
-            case .strong: return "Forte"
-            case .veryStrong: return "Muito forte"
+            case .veryWeak: return .strengthVeryWeak
+            case .weak: return .strengthWeak
+            case .good: return .strengthFair
+            case .strong: return .strengthStrong
+            case .veryStrong: return .strengthVeryStrong
         }
     }
 
@@ -27,10 +27,6 @@ enum PasswordStrength: Double {
     }
 
     mutating func updateStrength(_ bitsEntropy: Double) {
-        // guard bitsEntropy >= 0 else {
-        //     throw SecureError.invalidInput("Entropia invalida")
-        // }
-
         switch bitsEntropy {
             case 0..<40: self = .veryWeak
             case 40..<60: self = .weak
