@@ -18,11 +18,14 @@ extension Double {
             case ..<31_536_000:
                 return String(format: "%.0f dias", (self / 86_400))
 
-            case ..<315_360_0000:
+            case ..<3_153_599_999:
                 return String(format: "%.0f anos", (self / 31_536_000))
 
+            case ..<31_536_000_000_000:
+                return String(format: "%.0f séculos", (self / 3_153_600_000))
+
             default:
-                return "Séculos"
+                return "+1000 Séculos"
         }
     }
 }

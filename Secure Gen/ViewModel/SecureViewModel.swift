@@ -8,7 +8,7 @@ final class SecureViewModel: ObservableObject {
     // MARK: - Properties
     @Published public var password: String = ""
 
-    @Published public var length: Float = 24.0 {
+    @Published public var length: Float = 8 {
         didSet {
             generatePassword()
         }
@@ -128,7 +128,7 @@ final class SecureViewModel: ObservableObject {
         let workItem = DispatchWorkItem { [weak self] in
             Task {
                 self?.computeHashs()
-                await self?.checkLeak()
+                // await self?.checkLeak()
                 self?.isLoading = false
             }
         }
@@ -137,7 +137,13 @@ final class SecureViewModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: workItem)
     }
 
-    private func checkLeak() async {}
+    private func checkLeak() async {
+        do {
+            let response = try await Network.getPWNed(preffix: "5FBE2")
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 
     private func computeHashs() {
         let data = Data(self.password.utf8)

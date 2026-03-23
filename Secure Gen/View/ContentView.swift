@@ -8,12 +8,18 @@ struct ContentView: View {
 
             // MARK: - Password
             VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .bottom, spacing: 8) {
+                HStack(alignment: .bottom, spacing: 16) {
                     Text("Senha gerada")
                         .font(.caption)
                         .foregroundColor(.appTextAlt)
 
                     Spacer()
+
+                    Button {
+                        viewModel.copyPassword()
+                    } label: {
+                        Text("Copiar")
+                    }
 
                     ResetButton {
                         viewModel.generatePassword()
@@ -37,7 +43,7 @@ struct ContentView: View {
                     .font(.caption)
                     .foregroundColor(.appTextAlt)
 
-                    Slider(value: $viewModel.length, in: 4...32, step: 1) {
+                    Slider(value: $viewModel.length, in: 4...48, step: 2) {
                         Text("Length")
                     }
                 }
@@ -91,7 +97,7 @@ struct ContentView: View {
                             .tint(.appBackground)
 
                         HStack {
-                            VStack(alignment: .leading) {
+                            VStack {
                                 Text("Entropia")
                                     .font(.caption)
                                     .foregroundColor(.appBackground)
@@ -100,21 +106,12 @@ struct ContentView: View {
                             }
                             .frame(maxWidth: .infinity)
 
-                            VStack(alignment: .leading) {
+                            VStack {
                                 Text("Brute-force")
                                     .font(.caption)
                                     .foregroundColor(.appBackground)
 
                                 Text(viewModel.bruteForceTime.readableCrackTime)
-                            }
-                            .frame(maxWidth: .infinity)
-
-                            VStack(alignment: .leading) {
-                                Text("Vazamentos")
-                                    .font(.caption)
-                                    .foregroundColor(.appBackground)
-
-                                Text(viewModel.isLeaked ? "VAZADO" : "Nenhum")
                             }
                             .frame(maxWidth: .infinity)
                         }
