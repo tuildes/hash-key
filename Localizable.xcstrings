@@ -1,7 +1,84 @@
 {
   "sourceLanguage" : "pt-BR",
   "strings" : {
-    "bruteforce.centuries" : {
+    "%lld bits" : {
+
+    },
+    "%lld bruteforce_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld days"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dias"
+          }
+        }
+      }
+    },
+    "%lld bruteforce_decades" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld decades"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld décadas"
+          }
+        }
+      }
+    },
+    "%lld bruteforce_hours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld hours"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld horas"
+          }
+        }
+      }
+    },
+    "%lld bruteforce_years" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld years"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld anos"
+          }
+        }
+      }
+    },
+    "%lld min" : {
+
+    },
+    "%llds" : {
+
+    },
+    "bruteforce_centuries" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -14,40 +91,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Séculos"
-          }
-        }
-      }
-    },
-    "bruteforce.days" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Days"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dias"
-          }
-        }
-      }
-    },
-    "bruteforce.decades" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decades"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Décadas"
           }
         }
       }
@@ -69,23 +112,6 @@
         }
       }
     },
-    "bruteforce.hours" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hours"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Horas"
-          }
-        }
-      }
-    },
     "bruteforce.instant" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -103,36 +129,19 @@
         }
       }
     },
-    "bruteforce.minutes" : {
+    "bruteforce.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Minutes"
+            "value" : "Brute-force"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Minutos"
-          }
-        }
-      }
-    },
-    "bruteforce.years" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Years"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anos"
+            "value" : "Força-bruta"
           }
         }
       }
@@ -221,6 +230,9 @@
           }
         }
       }
+    },
+    "Length" : {
+
     },
     "password_length_label %lld characters_suffix" : {
       "extractionState" : "manual",

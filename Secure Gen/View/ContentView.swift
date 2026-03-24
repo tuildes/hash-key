@@ -49,12 +49,12 @@ struct ContentView: View {
                 VStack {
                     HStack(spacing: 16) {
                         Toggle(isOn: $viewModel.includeLowercase) {
-                            Text("Lowercase")
+                            Text(.charsetLowercase)
                                 .font(.caption)
                                 .foregroundColor(.appTextAlt)
                         }
                         Toggle(isOn: $viewModel.includeUppercase) {
-                            Text("Uppercase")
+                            Text(.charsetUppercase)
                                 .font(.caption)
                                 .foregroundColor(.appTextAlt)
                         }
@@ -62,12 +62,12 @@ struct ContentView: View {
 
                     HStack(spacing: 16) {
                         Toggle(isOn: $viewModel.includeNumbers) {
-                            Text("Numbers")
+                            Text(.charsetNumbers)
                                 .font(.caption)
                                 .foregroundColor(.appTextAlt)
                         }
                         Toggle(isOn: $viewModel.includeSymbols) {
-                            Text("Symbols")
+                            Text(.charsetSymbols)
                                 .font(.caption)
                                 .foregroundColor(.appTextAlt)
                         }
@@ -80,12 +80,12 @@ struct ContentView: View {
                 VStack(alignment: .leading, spacing: 32) {
                     VStack(spacing: 16) {
                         HStack {
-                            Text("Força da senha")
+                            Text(.strengthTitle)
                                 .font(.caption)
 
                             Spacer()
 
-                            Text(viewModel.passwordStrength.title.uppercased())
+                            Text(viewModel.passwordStrength.title)
                                 .font(.body)
                                 .bold()
                         }
@@ -96,7 +96,7 @@ struct ContentView: View {
 
                         HStack {
                             VStack {
-                                Text("Entropia")
+                                Text(.bruteforceEntropy)
                                     .font(.caption)
                                     .foregroundColor(.appBackground)
 
@@ -105,7 +105,7 @@ struct ContentView: View {
                             .frame(maxWidth: .infinity)
 
                             VStack {
-                                Text("Brute-force")
+                                Text(.bruteforceTitle)
                                     .font(.caption)
                                     .foregroundColor(.appBackground)
 
@@ -120,7 +120,7 @@ struct ContentView: View {
                     .cornerRadius(4)
 
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Hashes Criptográficos")
+                        Text(.hashesTitle)
                             .font(.caption)
                             .foregroundColor(.appTextAlt)
 
