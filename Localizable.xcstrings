@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "pt-BR",
   "strings" : {
+    "%lld bits" : {
+
+    },
     "%lld bruteforce_days" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -69,12 +72,18 @@
         }
       }
     },
+    "%lld min" : {
+
+    },
+    "%llds" : {
+
+    },
     "bruteforce_centuries" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Centuries"
           }
         },
@@ -221,6 +230,9 @@
           }
         }
       }
+    },
+    "Length" : {
+
     },
     "password_length_label %lld characters_suffix" : {
       "extractionState" : "manual",

@@ -139,7 +139,7 @@ final class SecureViewModel: ObservableObject {
 
     private func checkLeak() async {
         do {
-            let response = try await Network.getPWNed(preffix: "5FBE2")
+            let _ = try await Network.getPWNed(preffix: "5FBE2")
         } catch {
             print(error.localizedDescription)
         }

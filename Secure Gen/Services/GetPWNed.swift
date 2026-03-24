@@ -7,7 +7,7 @@ final class Network {
             throw SecureError.urlError
         }
 
-        var request = URLRequest(url: URL)
+        let request = URLRequest(url: URL)
         let (data, _) = try await URLSession.shared.data(for: request)
         let response = String(data: data, encoding: .utf8) ?? ""
 

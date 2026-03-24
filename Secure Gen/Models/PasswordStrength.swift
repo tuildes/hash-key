@@ -19,9 +19,9 @@ enum PasswordStrength: Double {
     var color: SwiftUI.Color {
         switch self {
             case .veryWeak: return .appError
-            case .weak: return .appError
+            case .weak: return .appErrorAlt
             case .good: return .appWarning
-            case .strong: return .appSuccess
+            case .strong: return .appSuccessAlt
             case .veryStrong: return .appSuccess
         }
     }
