@@ -214,6 +214,23 @@
         }
       }
     },
+    "get.started" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Começar"
+          }
+        }
+      }
+    },
     "hashes.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -232,7 +249,116 @@
       }
     },
     "Length" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comprimento"
+          }
+        }
+      }
+    },
+    "onboarding.description1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create strong, random passwords instantly using secure generation methods."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crie senhas fortes e aleatórias instantaneamente usando métodos de geração seguros."
+          }
+        }
+      }
+    },
+    "onboarding.description2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instantly discover how resilient your password is against brute-force attacks."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descubra instantaneamente o quão resistente é a sua senha contra ataques de força bruta."
+          }
+        }
+      }
+    },
+    "onboarding.description3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See the underlying representation of your passwords using standard algorithms like MD5 and SHA."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veja a representação subjacente de suas senhas usando algoritmos padrão como MD5 e SHA."
+          }
+        }
+      }
+    },
+    "onboarding.title1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate Passwords"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gere senhas"
+          }
+        }
+      }
+    },
+    "onboarding.title2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analyze Strength"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Análise a força da senha"
+          }
+        }
+      }
+    },
+    "onboarding.title3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Hashes"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veja os hashes"
+          }
+        }
+      }
     },
     "password_length_label %lld characters_suffix" : {
       "extractionState" : "manual",
