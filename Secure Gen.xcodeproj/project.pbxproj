@@ -95,12 +95,19 @@
 				};
 			};
 			buildConfigurationList = 886DDA112F6B65A900297FA8 /* Build configuration list for PBXProject "Secure Gen" */;
-			developmentRegion = "pt-BR";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 				"pt-BR",
+				id,
+				"pt-PT",
+				"en-IN",
+				fr,
+				ja,
+				de,
+				es,
 			);
 			mainGroup = 886DDA0D2F6B65A900297FA8;
 			minimizedProjectReferenceProxies = 1;

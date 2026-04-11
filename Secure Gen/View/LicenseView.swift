@@ -20,7 +20,7 @@ struct LicenseView: View {
         }
         .scrollIndicators(.hidden)
         .background(.appBackground)
-        .navigationTitle("MIT License")
+        .navigationTitle(.mitLicense)
         .navigationBarTitleDisplayMode(.inline)
     }
 }

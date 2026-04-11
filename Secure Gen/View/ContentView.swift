@@ -49,13 +49,13 @@ struct ContentView: View {
                             }
 
                         Label(
-                            didCopy ? "Copied!" : "Tap the password to copy",
+                            didCopy ? .copied : .tapAction,
                             systemImage: didCopy ? "checkmark" : "doc.on.doc"
                         )
                         .foregroundColor(.appTextAlt)
                         .font(.caption)
                     } else {
-                        Text("No charset selected")
+                        Text(.noCharset)
                             .foregroundColor(.appText)
                     }
                 }
@@ -182,7 +182,7 @@ struct ContentView: View {
                     Button {
                         showLicense = true
                     } label: {
-                        Text("MIT License")
+                        Text(.mitLicense)
                             .font(.caption)
                             .foregroundColor(.appTextAlt)
                             .frame(maxWidth: .infinity)
