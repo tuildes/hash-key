@@ -1,10 +1,10 @@
 import SwiftUI
-enum PasswordStrength: Double {
-    case veryWeak = 0.1
-    case weak = 0.25
-    case good = 0.5
-    case strong = 0.75
-    case veryStrong = 0.95
+enum PasswordStrength: Int {
+    case veryWeak = 0
+    case weak = 1
+    case good = 2
+    case strong = 3
+    case veryStrong = 4
 
     var title: LocalizedStringResource {
         switch self {

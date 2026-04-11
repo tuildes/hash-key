@@ -22,9 +22,9 @@ struct PasswordText: UIViewRepresentable {
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textColor = UIColor(.appText)
         label.lineBreakMode = .byCharWrapping
+        label.textAlignment = .center
         label.numberOfLines = 3
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        label.setContentHuggingPriority(.defaultLow, for: .vertical)
         label.isUserInteractionEnabled = true
 
         return label
@@ -34,5 +34,9 @@ struct PasswordText: UIViewRepresentable {
         if text != uiView.text {
             animateTextChange(for: uiView, newText: text)
         }
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: UILabel, context: Context) -> CGSize? {
+        return uiView.sizeThatFits(CGSize(width: proposal.width ?? .infinity, height: .infinity))
     }
 }

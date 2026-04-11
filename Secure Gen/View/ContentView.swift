@@ -1,38 +1,106 @@
 import SwiftUI
+import StoreKit
 
 struct ContentView: View {
     @StateObject private var viewModel: SecureViewModel = SecureViewModel()
+
+    @Environment(\.requestReview) var requestReview
+    @State private var showedReviewRequestInSession: Bool = false
+
+    private func requestReviewInSession() {
+        guard !showedReviewRequestInSession else { return }
+        showedReviewRequestInSession = true
+        requestReview()
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
 
             // MARK: - Password
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .bottom, spacing: 16) {
+            VStack(alignment: .center, spacing: 24) {
+
+                HStack(alignment: .bottom) {
                     Text(.passwordGeneratedTitle)
                         .font(.caption)
                         .foregroundColor(.appTextAlt)
 
                     Spacer()
 
-                    Button {
-                        viewModel.copyPassword()
-                    } label: {
-                        Text(.passwordActionCopy)
-                    }
-
                     ResetButton {
                         viewModel.generatePassword()
                     }
                 }
 
-                PasswordText(text: viewModel.password)
-                    .frame(height: 96, alignment: .top)
-                    .frame(maxWidth: .infinity)
-                    .onTapGesture {
-                        viewModel.copyPassword()
+                VStack(spacing: 8) {
+                    if (viewModel.includeLowercase || viewModel.includeSymbols
+                        || viewModel.includeUppercase || viewModel.includeNumbers)
+                    {
+                        PasswordText(text: viewModel.password)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .onTapGesture {
+                                viewModel.copyPassword()
+                                requestReviewInSession()
+                            }
+
+                        Label("Tap the password to copy", systemImage: "doc.on.doc")
+                            .foregroundColor(.appTextAlt)
+                            .font(.caption)
+                    } else {
+                        Text("No charset selected")
+                            .foregroundColor(.appText)
                     }
+                }
+                .frame(height: 120)
+
+                // MARK: - Password feedback
+                VStack(spacing: 12) {
+                    HStack(spacing: 2) {
+                        ForEach(0..<5) { i in
+                            Rectangle()
+                                .fill(
+                                    i <= viewModel.passwordStrength.rawValue
+                                        ? viewModel.passwordStrength.color
+                                        : .appTextAlt.opacity(0.2)
+                                )
+                                .frame(height: 4)
+                                .cornerRadius(2)
+                        }
+                    }
+                    .accessibilityHidden(true)
+
+                    HStack(alignment: .top, spacing: 16) {
+                        VStack(alignment: .leading) {
+                            Text(.bruteforceEntropy)
+                                .font(.caption)
+                                .foregroundColor(.appTextAlt)
+
+                            Text(String(format: "%.1f bits", viewModel.entropy))
+                                .font(.caption)
+                                .foregroundColor(.appTextAlt)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                        Text(viewModel.passwordStrength.title)
+                            .font(.body)
+                            .bold()
+                            .foregroundStyle(.tint)
+
+                        VStack(alignment: .trailing) {
+                            Text(.bruteforceTitle)
+                                .font(.caption)
+                                .foregroundColor(.appTextAlt)
+
+                            Text(viewModel.bruteForceTime.readableCrackTime)
+                                .font(.caption)
+                                .foregroundColor(.appTextAlt)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                }
+                .frame(maxWidth: .infinity)
             }
+
+            Divider()
 
             // MARK: - Password configuration
             VStack(spacing: 16) {
@@ -41,7 +109,7 @@ struct ContentView: View {
                         .font(.caption)
                         .foregroundColor(.appTextAlt)
 
-                    Slider(value: $viewModel.length, in: 4...48, step: 2) {
+                    Slider(value: $viewModel.length, in: 4...64, step: 2) {
                         Text("Length")
                     }
                 }
@@ -78,46 +146,7 @@ struct ContentView: View {
             // MARK: - Password Analyzer
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
-                    VStack(spacing: 16) {
-                        HStack {
-                            Text(.strengthTitle)
-                                .font(.caption)
 
-                            Spacer()
-
-                            Text(viewModel.passwordStrength.title)
-                                .font(.body)
-                                .bold()
-                        }
-
-                        ProgressView(value: viewModel.passwordStrength.rawValue)
-                            .progressViewStyle(.linear)
-                            .tint(.appBackground)
-
-                        HStack {
-                            VStack {
-                                Text(.bruteforceEntropy)
-                                    .font(.caption)
-                                    .foregroundColor(.appBackground)
-
-                                Text(String(format: "%.1f bits", viewModel.entropy))
-                            }
-                            .frame(maxWidth: .infinity)
-
-                            VStack {
-                                Text(.bruteforceTitle)
-                                    .font(.caption)
-                                    .foregroundColor(.appBackground)
-
-                                Text(viewModel.bruteForceTime.readableCrackTime)
-                            }
-                            .frame(maxWidth: .infinity)
-                        }
-                    }
-                    .padding(16)
-                    .foregroundColor(.appBackground)
-                    .background(.tint)
-                    .cornerRadius(4)
 
                     VStack(alignment: .leading, spacing: 16) {
                         Text(.hashesTitle)
@@ -147,7 +176,7 @@ struct ContentView: View {
         .padding(32)
         .background(.appBackground)
         .tint(
-            viewModel.isLeaked ? .appError : viewModel.passwordStrength.color
+            viewModel.passwordStrength.color
         )
         .animation(.default, value: viewModel.passwordStrength)
     }

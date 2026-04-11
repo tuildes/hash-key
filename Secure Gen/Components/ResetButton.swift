@@ -15,10 +15,8 @@ struct ResetButton: View {
                 }
             } label: {
                 Image(systemName: "arrow.circlepath")
-                    .padding(8)
-                    .foregroundColor(.appBackground)
-                    .background(.tint)
-                    .clipShape(Circle())
+                    .foregroundColor(.appText)
+                    .background(.clear)
             }
             .symbolEffect(
                 .drawOff.wholeSymbol,

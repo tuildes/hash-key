@@ -2,12 +2,12 @@ import Combine
 import Foundation
 import UIKit.UIPasteboard
 import CryptoKit
+import StoreKit
 
 final class SecureViewModel: ObservableObject {
 
     // MARK: - Properties
     @Published public var password: String = ""
-
     @Published public var length: Float = 8 {
         didSet {
             generatePassword()
@@ -42,7 +42,7 @@ final class SecureViewModel: ObservableObject {
     @Published public var entropy: Double = 0.0
     @Published public var bruteForceTime: Double = 0.0
     @Published private(set) var hashes: [HashName] = [
-        HashName(name: "MD5", isObsolete: true, value: "F1FF11FF11FF1F1F1", totalBits: 128),
+        HashName(name: "MD5", isObsolete: true, value: "", totalBits: 128),
         HashName(name: "SHA-1", isObsolete: true, value: "", totalBits: 160),
         HashName(name: "SHA-256", isObsolete: false, value: "", totalBits: 256),
         HashName(name: "SHA-384", isObsolete: false, value: "", totalBits: 384),
@@ -55,7 +55,6 @@ final class SecureViewModel: ObservableObject {
         var c: [Character] = [Character]()
         c.reserveCapacity(94)
 
-        // Default: Charset minusculo
         if includeLowercase {
             c.append(contentsOf: [
                 "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
@@ -87,9 +86,7 @@ final class SecureViewModel: ObservableObject {
     }
 
     // MARK: - Initializer
-    init() {
-        generatePassword()
-    }
+    init() { generatePassword() }
 
     // MARK: - User actions
     public func copyPassword() {
