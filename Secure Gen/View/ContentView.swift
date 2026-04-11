@@ -6,6 +6,7 @@ struct ContentView: View {
 
     @Environment(\.requestReview) var requestReview
     @State private var showedReviewRequestInSession: Bool = false
+    @State private var didCopy: Bool = false
 
     private func requestReviewInSession() {
         guard !showedReviewRequestInSession else { return }
@@ -40,11 +41,18 @@ struct ContentView: View {
                             .onTapGesture {
                                 viewModel.copyPassword()
                                 requestReviewInSession()
+                                withAnimation { didCopy = true }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    withAnimation { didCopy = false }
+                                }
                             }
 
-                        Label("Tap the password to copy", systemImage: "doc.on.doc")
-                            .foregroundColor(.appTextAlt)
-                            .font(.caption)
+                        Label(
+                            didCopy ? "Copied!" : "Tap the password to copy",
+                            systemImage: didCopy ? "checkmark" : "doc.on.doc"
+                        )
+                        .foregroundColor(.appTextAlt)
+                        .font(.caption)
                     } else {
                         Text("No charset selected")
                             .foregroundColor(.appText)
