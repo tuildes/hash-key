@@ -7,6 +7,7 @@ struct ContentView: View {
     @Environment(\.requestReview) var requestReview
     @State private var showedReviewRequestInSession: Bool = false
     @State private var didCopy: Bool = false
+    @State private var showLicense: Bool = false
 
     private func requestReviewInSession() {
         guard !showedReviewRequestInSession else { return }
@@ -177,9 +178,24 @@ struct ContentView: View {
                             }
                         }
                     }
+
+                    Button {
+                        showLicense = true
+                    } label: {
+                        Text("MIT License")
+                            .font(.caption)
+                            .foregroundColor(.appTextAlt)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .padding(.top, 8)
                 }
             }
             .scrollIndicators(.hidden)
+            .sheet(isPresented: $showLicense) {
+                NavigationStack {
+                    LicenseView()
+                }
+            }
         }
         .padding(32)
         .background(.appBackground)

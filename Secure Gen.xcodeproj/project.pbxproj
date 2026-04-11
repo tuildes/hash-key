@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		883BB6152F70BDB7006E5D79 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 883BB6142F70BDB7006E5D79 /* Localizable.xcstrings */; };
+		888927122F8AF8090053F06D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 888927112F8AF8090053F06D /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		883BB6142F70BDB7006E5D79 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		886DDA162F6B65A900297FA8 /* Secure Gen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Secure Gen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		888927112F8AF8090053F06D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -37,6 +39,7 @@
 		886DDA0D2F6B65A900297FA8 = {
 			isa = PBXGroup;
 			children = (
+				888927112F8AF8090053F06D /* LICENSE */,
 				883BB6142F70BDB7006E5D79 /* Localizable.xcstrings */,
 				886DDA182F6B65A900297FA8 /* Secure Gen */,
 				886DDA172F6B65A900297FA8 /* Products */,
@@ -117,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				883BB6152F70BDB7006E5D79 /* Localizable.xcstrings in Resources */,
+				888927122F8AF8090053F06D /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
