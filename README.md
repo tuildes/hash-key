@@ -35,3 +35,7 @@ HashKey is designed for speed and ultimate security. Instead of relying on stand
 * **Cryptographically Secure:** Powered natively by `CryptoKit` by Apple
 * **Fast & Practical:** Generate and copy complex passwords instantly to your clipboard.
 * **Privacy First:** Zero tracking, zero data collection, and completely offline.
+
+## License and Publication
+
+The application is under the [MIT License](LICENSE) and published on the App Store.
