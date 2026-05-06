@@ -26,7 +26,7 @@ HashKey is designed for speed and ultimate security. Instead of relying on stand
 <br />
 
 <p align="center">
-  <img width="49%" src=".github/assets/mockup_1.jpg" alt="HashKey Main Interface"/>
+  <img width="49%" src=".github/assets/mockup.png" alt="HashKey Main Interface"/>
 </p>
 </details>
 
