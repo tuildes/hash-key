@@ -13,6 +13,7 @@
   <img src="https://img.shields.io/badge/Platform-iOS-blue" alt="Platform">
   <img src="https://img.shields.io/badge/Language-Swift-orange" alt="Swift">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+  <img src="https://img.shields.io/github/stars/tuildes/hash-key" alt="Github star">
 </p>
 
 ## About
