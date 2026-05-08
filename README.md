@@ -1,6 +1,4 @@
-<h1 align="center">
-  HashKey
-</h1>
+<img width="100%" src=".github/assets/banner.png" alt="HashKey: Generate Secure Passwords with a interface mockup in right"/>
 
 <p align="center">
   <i>A practical, open-source iOS app that generates secure passwords using hardware entropy (<code>SecRandomCopyBytes</code>).</i>
@@ -19,17 +17,6 @@
 ## About
 
 HashKey is designed for speed and ultimate security. Instead of relying on standard pseudo-random number generators, it utilizes the device's cryptographically secure hardware noise via Apple's `SecRandomCopyBytes` API to ensure mathematically unpredictable passwords.
-
-<details open>
-<summary>
-  Screenshots
-</summary>
-<br />
-
-<p align="center">
-  <img width="49%" src=".github/assets/mockup.png" alt="HashKey Main Interface"/>
-</p>
-</details>
 
 ## Features
 
