@@ -62,5 +62,10 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
+# Coding and build configuration
 buildServer.json
+.vscode
+.claude
+
+# Mac trash
 .DS_Store
